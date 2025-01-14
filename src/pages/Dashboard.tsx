@@ -12,8 +12,8 @@ export const Dashboard: React.FC = withMainlayout(() => {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Workflows</h2>
-      <div className="grid grid-cols-5 auto-rows-auto gap-4">
+      <h1 className="text-2xl p-4 font-bold mb-4">Workflows</h1>
+      <div className="grid grid-cols-5 auto-rows-auto gap-4 place-items-center">
         {workflow.workflows.map((wf) => (
           <WorkflowCard title={wf.title} />
         ))}
