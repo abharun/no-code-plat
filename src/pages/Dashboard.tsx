@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withMainlayout } from "../layouts";
 import { WorkflowCard } from "../components/Common";
 import { useWorkFlow } from "../hooks";
@@ -9,8 +9,13 @@ export const Dashboard: React.FC = withMainlayout(() => {
   const workflow = useWorkFlow();
   const selectedWorkflow = workflow.workflows[workflow.curIndex] || null;
 
+  useEffect(() => {
+    console.log("FIRST", selectedWorkflow);
+  }, []);
+
   const handleCreateWorkflow = () => {
     workflow.newWorkFlow();
+    console.log("SECOND", selectedWorkflow);
   };
 
   const handleWorkflowClick = (index: number) => {

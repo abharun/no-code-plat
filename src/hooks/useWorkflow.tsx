@@ -2,7 +2,7 @@ import { useState } from "react";
 import { WorkFlowType, TaskType, Operator } from "../types";
 
 export const useWorkFlow = () => {
-  const [curIndex, setCurIndex] = useState<number>(0);
+  const [curIndex, setCurIndex] = useState<number>(-1);
   const [workflows, setWorkFlows] = useState<WorkFlowType[]>([]);
 
   const newWorkFlow = () => {
@@ -10,7 +10,6 @@ export const useWorkFlow = () => {
       title: "WorkFlow",
       tasks: [],
     };
-    setCurIndex(workflows.length);
     setWorkFlows((prev) => [...prev, newFlow]);
   };
 

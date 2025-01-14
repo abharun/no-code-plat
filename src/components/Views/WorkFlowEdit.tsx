@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { TaskCard, CloseButton, SaveButton, TaskSelector } from "../Common";
+import { TaskCard, CloseButton } from "../Common";
 import { WorkFlowType } from "../../types";
+import { TaskSelector } from "./TaskSelector";
 
 interface WorkflowSidebarProps {
   workflow: WorkFlowType;
@@ -34,10 +35,6 @@ export const WorkflowSidebar: React.FC<WorkflowSidebarProps> = ({
           <div className="mb-2">
             <TaskCard task={null} onClick={() => setShowTaskSelector(true)} />
           </div>
-        </div>
-
-        <div className="p-4 border-t">
-          <SaveButton onClick={onSave} />
         </div>
       </div>
 
