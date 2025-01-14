@@ -22,8 +22,6 @@ export const Dashboard: React.FC = withMainlayout(() => {
     workflow.setCurIndex(index);
   };
 
-  const handleSave = () => {};
-
   const handleAddTask = (taskType: string) => {
     workflow.addTaskToWorkflow(taskType);
   };
@@ -53,8 +51,8 @@ export const Dashboard: React.FC = withMainlayout(() => {
         <WorkflowSidebar
           workflow={selectedWorkflow}
           onClose={() => workflow.setCurIndex(-1)}
-          onSave={handleSave}
           onAddTask={handleAddTask}
+          onTasksUpdate={workflow.updateWorkflowTasks}
         />
       )}
     </div>

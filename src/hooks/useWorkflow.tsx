@@ -62,11 +62,23 @@ export const useWorkFlow = () => {
     }
   };
 
+  const updateWorkflowTasks = (tasks: TaskType[]) => {
+    setWorkFlows((prevWorkflows) => {
+      const newWorkflows = [...prevWorkflows];
+      newWorkflows[curIndex] = {
+        ...newWorkflows[curIndex],
+        tasks: tasks,
+      };
+      return newWorkflows;
+    });
+  };
+
   return {
     setCurIndex,
     curIndex,
     workflows,
     newWorkFlow,
     addTaskToWorkflow,
+    updateWorkflowTasks,
   };
 };
