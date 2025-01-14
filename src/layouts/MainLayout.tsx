@@ -8,7 +8,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className="w-full h-full relative">
       <HeaderBarView />
-      <div className="w-full h-[calc(100vh-112px)]">{children}</div>
+      <div className="w-full h-[calc(100vh-112px)] relative">{children}</div>
     </div>
   );
 };
