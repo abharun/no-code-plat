@@ -2,7 +2,7 @@ import { useState } from "react";
 import { WorkFlowType, TaskType, Operator } from "../types";
 
 export const useWorkFlow = () => {
-  const [curIndex, setCurIndex] = useState<number>(0);
+  const [curIndex, setCurIndex] = useState<number>(-1);
   const [workflows, setWorkFlows] = useState<WorkFlowType[]>([]);
 
   const newWorkFlow = () => {
@@ -10,7 +10,6 @@ export const useWorkFlow = () => {
       title: "WorkFlow",
       tasks: [],
     };
-    setCurIndex(workflows.length);
     setWorkFlows((prev) => [...prev, newFlow]);
   };
 
@@ -30,7 +29,7 @@ export const useWorkFlow = () => {
         break;
       case "LogMessage":
         newTask = {
-          type: "LogMsgTask",
+          type: "LogMessageTask",
           payload: {
             message: "",
           },
@@ -38,7 +37,7 @@ export const useWorkFlow = () => {
         break;
       case "Calculation":
         newTask = {
-          type: "CalcTask",
+          type: "CalculationTask",
           payload: {
             valueA: 0,
             valueB: 0,
@@ -63,10 +62,23 @@ export const useWorkFlow = () => {
     }
   };
 
+  const updateWorkflowTasks = (tasks: TaskType[]) => {
+    setWorkFlows((prevWorkflows) => {
+      const newWorkflows = [...prevWorkflows];
+      newWorkflows[curIndex] = {
+        ...newWorkflows[curIndex],
+        tasks: tasks,
+      };
+      return newWorkflows;
+    });
+  };
+
   return {
     setCurIndex,
+    curIndex,
     workflows,
     newWorkFlow,
     addTaskToWorkflow,
+    updateWorkflowTasks,
   };
 };
