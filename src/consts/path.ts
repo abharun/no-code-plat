@@ -1,3 +1,3 @@
 export const INTERFACE = "/";
-export const DASHBOARD = "/builder";
+export const BUILDER = "/builder";
 export const LOGIN = "/login";

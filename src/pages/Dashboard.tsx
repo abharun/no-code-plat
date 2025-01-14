@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withMainlayout } from "../layouts";
 import { WorkflowCard } from "../components/Common";
 import { useWorkFlow } from "../hooks";
 import { WorkflowSidebar } from "../components/Views";
-import { WorkFlowType } from "../types";
 
 export const Dashboard: React.FC = withMainlayout(() => {
   const workflow = useWorkFlow();
