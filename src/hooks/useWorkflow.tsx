@@ -10,6 +10,7 @@ export const useWorkFlow = () => {
       title: "WorkFlow",
       tasks: [],
     };
+    setCurIndex(workflows.length);
     setWorkFlows((prev) => [...prev, newFlow]);
   };
 

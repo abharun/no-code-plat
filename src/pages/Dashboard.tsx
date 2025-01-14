@@ -1,24 +1,25 @@
 import React from "react";
 import { withMainlayout } from "../layouts";
 import { WorkflowCard } from "../components/Common";
+import { useWorkFlow } from "../hooks";
 
 export const Dashboard: React.FC = withMainlayout(() => {
+  const workflow = useWorkFlow();
+
   const handleCreateWorkflow = () => {
-    // Handle new workflow creation
-    console.log("Creating new workflow");
+    workflow.newWorkFlow();
   };
 
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Workflows</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <WorkflowCard 
-          title="API Workflow"
-          description="New API workflow..."
-        />
-        <WorkflowCard 
+      <div className="grid grid-cols-5 auto-rows-auto gap-4">
+        {workflow.workflows.map((wf) => (
+          <WorkflowCard title={wf.title} />
+        ))}
+        <WorkflowCard
           title="Add Workflow"
-          description="Click here to add a backend workflow..."
+          description="Click here to add a new workflow..."
           isPlaceholder={true}
           onClick={handleCreateWorkflow}
         />
