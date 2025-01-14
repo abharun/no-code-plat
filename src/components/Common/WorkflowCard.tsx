@@ -16,6 +16,9 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
       onClick={onClick}
       className={`
         p-4 rounded-lg cursor-pointer
+        aspect-square
+        w-48
+        flex flex-col
         ${isPlaceholder 
           ? 'border-2 border-dashed border-gray-300 hover:border-gray-400' 
           : 'bg-gray-200 hover:bg-gray-300'}

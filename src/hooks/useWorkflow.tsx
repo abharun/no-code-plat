@@ -55,7 +55,7 @@ export const useWorkFlow = () => {
         const newWorkflows = [...prevWorkflows];
         newWorkflows[curIndex] = {
           ...newWorkflows[curIndex],
-          tasks: [...newWorkflows[curIndex].tasks, newTask],
+          tasks: [...newWorkflows[curIndex].tasks, newTask as TaskType],
         };
         return newWorkflows;
       });
