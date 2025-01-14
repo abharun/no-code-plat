@@ -74,9 +74,10 @@ export const useWorkFlow = () => {
   };
 
   return {
-    setCurIndex,
     curIndex,
+    setCurIndex,
     workflows,
+    setWorkFlows,
     newWorkFlow,
     addTaskToWorkflow,
     updateWorkflowTasks,

@@ -9,13 +9,8 @@ export const Dashboard: React.FC = withMainlayout(() => {
   const workflow = useWorkFlow();
   const selectedWorkflow = workflow.workflows[workflow.curIndex] || null;
 
-  useEffect(() => {
-    console.log("FIRST", selectedWorkflow);
-  }, []);
-
   const handleCreateWorkflow = () => {
     workflow.newWorkFlow();
-    console.log("SECOND", selectedWorkflow);
   };
 
   const handleWorkflowClick = (index: number) => {
@@ -24,6 +19,17 @@ export const Dashboard: React.FC = withMainlayout(() => {
 
   const handleAddTask = (taskType: string) => {
     workflow.addTaskToWorkflow(taskType);
+  };
+
+  const handleUpdateTitle = (newTitle: string) => {
+    if (selectedWorkflow) {
+      const updatedWorkflows = [...workflow.workflows];
+      updatedWorkflows[workflow.curIndex] = {
+        ...selectedWorkflow,
+        title: newTitle,
+      };
+      workflow.setWorkFlows(updatedWorkflows); // Update the workflows state
+    }
   };
 
   return (
@@ -53,6 +59,7 @@ export const Dashboard: React.FC = withMainlayout(() => {
           onClose={() => workflow.setCurIndex(-1)}
           onAddTask={handleAddTask}
           onTasksUpdate={workflow.updateWorkflowTasks}
+          onUpdateTitle={handleUpdateTitle}
         />
       )}
     </div>
