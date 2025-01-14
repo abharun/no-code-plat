@@ -8,9 +8,9 @@ interface TaskCardProps {
 export const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
   const getTaskIcon = (type: string) => {
     switch (type) {
-      case "CalcTask":
+      case "CalculationTask":
         return "🔢";
-      case "LogMsgTask":
+      case "LogMessageTask":
         return "📝";
       case "SendEmailTask":
         return "📧";

@@ -30,7 +30,7 @@ export const useWorkFlow = () => {
         break;
       case "LogMessage":
         newTask = {
-          type: "LogMsgTask",
+          type: "LogMessageTask",
           payload: {
             message: "",
           },
@@ -38,7 +38,7 @@ export const useWorkFlow = () => {
         break;
       case "Calculation":
         newTask = {
-          type: "CalcTask",
+          type: "CalculationTask",
           payload: {
             valueA: 0,
             valueB: 0,
@@ -65,6 +65,7 @@ export const useWorkFlow = () => {
 
   return {
     setCurIndex,
+    curIndex,
     workflows,
     newWorkFlow,
     addTaskToWorkflow,

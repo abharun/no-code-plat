@@ -11,17 +11,17 @@ export type SendEmailTask = {
   content: string;
 };
 
-export type LogMsgTask = {
+export type LogMessageTask = {
     message: string;
 };
 
-export type CalcTask = {
+export type CalculationTask = {
     valueA: number;
     valueB: number;
     op: Operator;
 }
 
 export type TaskType = {
-  type: 'SendEmailTask' | 'LogMsgTask' | 'CalcTask';
-  payload: SendEmailTask | LogMsgTask | CalcTask;
+  type: 'SendEmailTask' | 'LogMessageTask' | 'CalculationTask';
+  payload: SendEmailTask | LogMessageTask | CalculationTask;
 };
