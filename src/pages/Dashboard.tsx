@@ -3,10 +3,11 @@ import { withMainlayout } from "../layouts";
 import { WorkflowCard } from "../components/Common";
 import { useWorkFlow } from "../hooks";
 import { WorkflowSidebar } from "../components/Views";
+import { WorkFlowType } from "../types";
 
 export const Dashboard: React.FC = withMainlayout(() => {
   const workflow = useWorkFlow();
-  const [selectedWorkflow, setSelectedWorkflow] = React.useState<any>(null);
+  const [selectedWorkflow, setSelectedWorkflow] = React.useState<WorkFlowType | null>(null);
 
   const handleCreateWorkflow = () => {
     workflow.newWorkFlow();
@@ -16,9 +17,7 @@ export const Dashboard: React.FC = withMainlayout(() => {
     setSelectedWorkflow(wf);
   };
 
-  const handleSave = () => {
-    // Add save handler
-  };
+  const handleSave = () => {};
 
   return (
     <div className="flex">

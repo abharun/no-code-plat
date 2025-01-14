@@ -2,7 +2,6 @@ import React from "react";
 import { TaskCard, CloseButton, SaveButton } from "../Common";
 import { WorkFlowType } from "../../types";
 
-
 interface WorkflowSidebarProps {
   workflow: WorkFlowType;
   onClose: () => void;
@@ -27,6 +26,11 @@ export const WorkflowSidebar: React.FC<WorkflowSidebarProps> = ({
             <TaskCard task={task} />
           </div>
         ))}
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="mb-2">
+            <TaskCard task={null} />
+          </div>
+        </div>
       </div>
 
       <div className="p-4 border-t">
