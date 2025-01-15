@@ -3,8 +3,10 @@ import { withMainlayout } from "../layouts";
 import { WorkflowCard } from "../components/Common";
 import { useWorkFlow } from "../hooks";
 import { WorkflowSidebar } from "../components/Views";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard: React.FC = withMainlayout(() => {
+  const navigate = useNavigate();
   const workflow = useWorkFlow();
   const selectedWorkflow = workflow.workflows[workflow.curIndex] || null;
 
@@ -31,6 +33,11 @@ export const Dashboard: React.FC = withMainlayout(() => {
     }
   };
 
+  const handleExecuteWorkflow = (index: number) => {
+    workflow.setCurIndex(index);
+    navigate("/execution-log");
+  };
+
   return (
     <div className="flex">
       <div className={`flex-1 p-4 ${selectedWorkflow ? "mr-96" : "mr-0"}`}>
@@ -41,6 +48,7 @@ export const Dashboard: React.FC = withMainlayout(() => {
               key={index}
               title={wf.title}
               onClick={() => handleWorkflowClick(index)}
+              onExecute={() => handleExecuteWorkflow(index)}
             />
           ))}
           <WorkflowCard
