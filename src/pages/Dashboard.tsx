@@ -36,7 +36,7 @@ export const Dashboard: React.FC = withMainlayout(() => {
 
   return (
     <div className="flex">
-      <div className={`flex-1 p-4 ${selectedWorkflow ? "mr-96" : "mr-0"}`}>
+      <div className={`flex-1 p-4`}>
         <h1 className="text-2xl p-4 font-bold mb-4">Workflows</h1>
         <div className="grid grid-cols-5 tablet:grid-cols-3 mobile:grid-cols-1 auto-rows-auto gap-4 place-items-center">
           {workflows.map((wf, index) => (
