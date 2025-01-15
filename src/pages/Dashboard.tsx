@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 export const Dashboard: React.FC = withMainlayout(() => {
   const navigate = useNavigate();
-  const { workflows, curIndex, newWorkFlow, setCurIndex, addTaskToWorkflow, setWorkFlows, updateWorkflowTasks } = useWorkflowStore();
+  const {
+    workflows,
+    curIndex,
+    newWorkFlow,
+    setCurIndex,
+    addTaskToWorkflow,
+    setWorkFlows,
+    updateWorkflowTasks,
+  } = useWorkflowStore();
   const selectedWorkflow = workflows[curIndex] || null;
 
   const handleUpdateTitle = (newTitle: string) => {
@@ -30,7 +38,7 @@ export const Dashboard: React.FC = withMainlayout(() => {
     <div className="flex">
       <div className={`flex-1 p-4 ${selectedWorkflow ? "mr-96" : "mr-0"}`}>
         <h1 className="text-2xl p-4 font-bold mb-4">Workflows</h1>
-        <div className="grid grid-cols-7 auto-rows-auto gap-4 place-items-center">
+        <div className="grid grid-cols-5 tablet:grid-cols-3 mobile:grid-cols-1 auto-rows-auto gap-4 place-items-center">
           {workflows.map((wf, index) => (
             <WorkflowCard
               key={index}
