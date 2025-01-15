@@ -9,6 +9,7 @@ import {
   TaskType,
 } from "../types";
 import TaskResult from "../components/Common/TaskResult";
+import { useNavigate } from "react-router-dom";
 
 const parseCalcTask = (task: CalculationTask) => {
   switch (task.op) {
@@ -21,17 +22,20 @@ const parseCalcTask = (task: CalculationTask) => {
     case Operator.DIVIDE:
       return task.valueB !== 0
         ? { op: "/", result: task.valueA / task.valueB }
-        : undefined;
+        : { op: "/", result: undefined };
     default:
       return undefined;
   }
 };
 
 export const ExecutePage: React.FC = withMainlayout(() => {
+  const navigate = useNavigate();
   const { workflows, curIndex } = useWorkflowStore();
   const selectedWorkflow = workflows[curIndex];
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
-  const [taskResults, setTaskResults] = useState<string[]>([]);
+  const [taskResults, setTaskResults] = useState<
+    { result: string; status: "success" | "failure" }[]
+  >([]);
 
   useEffect(() => {
     if (selectedWorkflow) {
@@ -41,6 +45,7 @@ export const ExecutePage: React.FC = withMainlayout(() => {
         if (currentTaskIndex < totalTasks) {
           const task = selectedWorkflow.tasks[currentTaskIndex];
           let result = "";
+          let status: "success" | "failure" = "success";
 
           switch (task.type) {
             case "SendEmailTask":
@@ -54,13 +59,19 @@ export const ExecutePage: React.FC = withMainlayout(() => {
             case "CalculationTask":
               const calcTask = task.payload as CalculationTask;
               const analyse = parseCalcTask(calcTask);
-              result = `Calculating: ${calcTask.valueA} ${analyse?.op} ${calcTask.valueB} = ${analyse?.result}`;
+              if (analyse?.result === undefined) {
+                result = `Calculating: ${calcTask.valueA} ${analyse?.op} ${calcTask.valueB} = Failure (division by zero)`;
+                status = "failure";
+              } else {
+                result = `Calculating: ${calcTask.valueA} ${analyse?.op} ${calcTask.valueB} = ${analyse.result}`;
+              }
               break;
             default:
               result = `Unknown task type: ${task.type}`;
+              status = "failure";
           }
 
-          setTaskResults((prevResults) => [...prevResults, result]);
+          setTaskResults((prevResults) => [...prevResults, { result, status }]);
           setCurrentTaskIndex((prevIndex) => prevIndex + 1);
         }
       };
@@ -73,18 +84,26 @@ export const ExecutePage: React.FC = withMainlayout(() => {
 
   return (
     <div className="execute-page p-4">
-      <h1 className="text-2xl p-4 font-bold mb-4">Execution</h1>
+      <div className="execute-title">
+        <div className="flex p-4 justify-between">
+          <h1 className="text-2xl font-bold mb-4">Execution</h1>
+          <button className="pr-36" onClick={() => navigate("/builder")}>
+            Back to Workflows
+          </button>
+        </div>
+      </div>
       {curIndex >= 0 && workflows[curIndex] && (
         <div>
           <h2 className="workflow-title p-4">
-            Executing: {workflows[curIndex].title}
+            Executing <b>{workflows[curIndex].title}</b> ...
           </h2>
           <div className="task-results">
-            {taskResults.map((result, index) => (
+            {taskResults.map((taskResult, index) => (
               <TaskResult
                 key={index}
                 taskType={`Task ${index + 1}`}
-                result={result}
+                result={taskResult.result}
+                status={taskResult.status}
               />
             ))}
           </div>
