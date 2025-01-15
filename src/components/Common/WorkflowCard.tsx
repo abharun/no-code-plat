@@ -2,6 +2,7 @@ interface WorkflowCardProps {
   title: string;
   description?: string;
   onClick?: () => void;
+  onExecute?: () => void;
   isPlaceholder?: boolean;
 }
 
@@ -9,6 +10,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
   title,
   description,
   onClick,
+  onExecute,
   isPlaceholder = false,
 }) => {
   return (
@@ -28,6 +30,17 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
     >
       <h3 className="font-semibold">{title}</h3>
       {description && <p className="text-sm text-gray-600">{description}</p>}
+      {onExecute && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onExecute();
+          }}
+          className="mt-24 bg-blue-500 text-white py-1 px-3 rounded"
+        >
+          Execute
+        </button>
+      )}
     </div>
   );
 };

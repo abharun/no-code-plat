@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TaskType, Operator } from "../../types";
-import { CloseButton } from "./CloseBtn";
+import { CloseButton } from "../Common/CloseBtn";
 
 interface TaskConfigModalProps {
   task: TaskType;

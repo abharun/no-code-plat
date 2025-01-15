@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TaskType } from "../../types";
-import { TaskConfigModal } from "./TaskConfigModal";
+import { TaskConfigModal } from "../Views/TaskConfigModal";
 
 interface TaskCardProps {
   task: TaskType | null;
