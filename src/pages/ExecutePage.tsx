@@ -97,7 +97,7 @@ export const ExecutePage: React.FC = withMainlayout(() => {
           <h2 className="workflow-title p-4">
             Executing <b>{workflows[curIndex].title}</b> ...
           </h2>
-          <div className="task-results">
+          <div className="task-results p-4">
             {taskResults.map((taskResult, index) => (
               <TaskResult
                 key={index}

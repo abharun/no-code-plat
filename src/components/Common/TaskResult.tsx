@@ -12,8 +12,8 @@ const TaskResult: React.FC<TaskResultProps> = ({
   status,
 }) => {
   return (
-    <div className="task-result">
-      <strong>{taskType}:</strong> {result}
+    <div className="task-result p-2">
+      <strong>{taskType}: </strong> {result}
       {status === "success" ? (
         <span
           role="img"
